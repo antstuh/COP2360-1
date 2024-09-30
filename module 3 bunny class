@@ -18,7 +18,7 @@ class Program
     static void Main(string[] args)
     {
         // Using object initializer
-        Bunny b1 = new Bunny("Bo") { LikesCarrots = true, LikesHumans = false };
+        Bunny b1 = new Bunny("Ant") { LikesCarrots = true, LikesHumans = false };
 
         // Output the bunny's preferences
         Console.WriteLine($"{b1.Name} - Likes Carrots: {b1.LikesCarrots}, Likes Humans: {b1.LikesHumans}");
