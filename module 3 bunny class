@@ -1,0 +1,26 @@
+public class Bunny
+{
+    public string Name { get; set; }
+    public bool LikesCarrots { get; set; }
+    public bool LikesHumans { get; set; }
+
+    // Constructor with optional parameters
+    public Bunny(string name, bool likesCarrots = false, bool likesHumans = false)
+    {
+        Name = name;
+        LikesCarrots = likesCarrots;
+        LikesHumans = likesHumans;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Using object initializer
+        Bunny b1 = new Bunny("Bo") { LikesCarrots = true, LikesHumans = false };
+
+        // Output the bunny's preferences
+        Console.WriteLine($"{b1.Name} - Likes Carrots: {b1.LikesCarrots}, Likes Humans: {b1.LikesHumans}");
+    }
+}
