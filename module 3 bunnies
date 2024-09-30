@@ -1,0 +1,36 @@
+using System;
+
+public class Bunny
+{
+    public string Name { get; set; }
+    public bool LikesCarrots { get; set; }
+    public bool LikesHumans { get; set; }
+
+    public Bunny(string name, bool likesCarrots = false, bool likesHumans = false)
+    {
+        Name = name;
+        LikesCarrots = likesCarrots;
+        LikesHumans = likesHumans;
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        Bunny bunny1 = new Bunny("Ant")
+        {
+            LikesCarrots = true,
+            LikesHumans = false
+        };
+
+        Bunny bunny2 = new Bunny("Ava")
+        {
+            LikesCarrots = false,
+            LikesHumans = true
+        };
+
+        Console.WriteLine($"{bunny1.Name} - Likes Carrots: {bunny1.LikesCarrots}, Likes Humans: {bunny1.LikesHumans}");
+        Console.WriteLine($"{bunny2.Name} - Likes Carrots: {bunny2.LikesCarrots}, Likes Humans: {bunny2.LikesHumans}");
+    }
+}
