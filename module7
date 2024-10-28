@@ -1,0 +1,125 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        Dictionary<string, string> petsDictionary = new Dictionary<string, string>();
+        bool exit = false;
+
+        while (!exit)
+        {
+            Console.WriteLine("\nChoose an action:");
+            Console.WriteLine("1: Populate the Dictionary");
+            Console.WriteLine("2: Display Dictionary Contents");
+            Console.WriteLine("3: Remove a Key");
+            Console.WriteLine("4: Add a New Key and Value");
+            Console.WriteLine("5: Update an Existing Key with a New Value");
+            Console.WriteLine("6: Sort Keys");
+            Console.WriteLine("7: Exit");
+            Console.Write("Enter your choice: ");
+            
+            int choice = int.Parse(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    PopulateDictionary(petsDictionary);
+                    break;
+                case 2:
+                    DisplayDictionary(petsDictionary);
+                    break;
+                case 3:
+                    RemoveKey(petsDictionary);
+                    break;
+                case 4:
+                    AddNewKeyAndValue(petsDictionary);
+                    break;
+                case 5:
+                    UpdateExistingKey(petsDictionary);
+                    break;
+                case 6:
+                    SortKeys(petsDictionary);
+                    break;
+                case 7:
+                    exit = true;
+                    Console.WriteLine("Exiting...");
+                    break;
+                default:
+                    Console.WriteLine("Invalid.");
+                    break;
+            }
+        }
+    }
+
+    static void PopulateDictionary(Dictionary<string, string> dictionary)
+    {
+        dictionary["Fish"] = "Snapper, Jack, Snook";
+        dictionary["Dog"] = "Pitbull, Chihuahua, Husky";
+        Console.WriteLine("Dictionary populated with fish and dogs.");
+    }
+
+    static void DisplayDictionary(Dictionary<string, string> dictionary)
+    {
+        Console.WriteLine("\nDictionary Contents:");
+        foreach (var item in dictionary)
+        {
+            Console.WriteLine($"{item.Key}: {item.Value}");
+        }
+    }
+
+    static void RemoveKey(Dictionary<string, string> dictionary)
+    {
+        Console.Write("Enter the key to remove: ");
+        string key = Console.ReadLine();
+
+        if (dictionary.Remove(key))
+        {
+            Console.WriteLine($"{key} removed from the dictionary.");
+        }
+        else
+        {
+            Console.WriteLine($"{key} not in the dictionary.");
+        }
+    }
+
+    static void AddNewKeyAndValue(Dictionary<string, string> dictionary)
+    {
+        Console.Write("Enter a new key: ");
+        string key = Console.ReadLine();
+        Console.Write("Enter a value for this key: ");
+        string value = Console.ReadLine();
+
+        dictionary[key] = value;
+        Console.WriteLine($"{key} added with value {value}.");
+    }
+
+    static void UpdateExistingKey(Dictionary<string, string> dictionary)
+    {
+        Console.Write("Enter the key to update: ");
+        string key = Console.ReadLine();
+
+        if (dictionary.ContainsKey(key))
+        {
+            Console.Write("Enter the new value: ");
+            string value = Console.ReadLine();
+            dictionary[key] = value;
+            Console.WriteLine($"Value for {key} updated to {value}.");
+        }
+        else
+        {
+            Console.WriteLine($"{key} not in the dictionary.");
+        }
+    }
+
+    static void SortKeys(Dictionary<string, string> dictionary)
+    {
+        var sortedKeys = new SortedDictionary<string, string>(dictionary);
+        Console.WriteLine("\nSorted Dictionary Contents:");
+        foreach (var item in sortedKeys)
+        {
+            Console.WriteLine($"{item.Key}: {item.Value}");
+        }
+    }
+}
