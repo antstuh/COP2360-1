@@ -1,0 +1,104 @@
+using System;
+
+public class Contractor
+{
+private string contractorName;
+private int contractorNumber;
+private DateTime contractorStartDate;
+
+    public Contractor(string name, int number, DateTime startDate)
+    {
+        contractorName = name;
+        contractorNumber = number;
+        contractorStartDate = startDate;
+    }
+    
+    public string ContractorName
+    {
+        get { return contractorName; }
+        set { contractorName = value; }
+    }
+    
+    public int ContractorNumber
+    {
+        get { return contractorNumber; }
+        set { contractorNumber = value; }
+    }
+    
+    public DateTime ContractorStartDate
+    {
+        get { return contractorStartDate; }
+        set { contractorStartDate = value;}
+    }
+}
+public class Subcontractor : Contractor
+{
+    private int shift;
+    private double hourlyPayRate;
+
+    public Subcontractor(string name, int number, DateTime startDate, int s, double rate) : base(name, number, startDate)
+    {
+        shift = s;
+        hourlyPayRate = rate;
+    }
+    public int Shift
+    {
+        get { return shift; }
+        set { shift = value; }
+    }
+    public double HourlyPayRate
+    { 
+        get { return hourlyPayRate; }
+        set { hourlyPayRate = value; }
+        }
+    public float ComputePay(double hoursWorked)
+    { 
+        double totalPay = hoursWorked * hourlyPayRate;
+        if (shift == 2)
+            {totalPay = totalPay * 1.03;}
+        return (float)totalPay;
+
+        }     
+}
+class Program
+{
+    static void Main(string[] args)
+    {
+        string response;
+        
+        do
+        {
+        Console.WriteLine("Name of the contractor:");
+        string name = Console.ReadLine();
+        Console.WriteLine("Contractor number:");
+        int number = int.Parse(Console.ReadLine());
+        Console.WriteLine("Contractor start date:");
+        DateTime startDate = DateTime.Parse(Console.ReadLine());
+        Console.WriteLine("Shift 1 for day or 2 for night:");
+        int shift = int.Parse(Console.ReadLine());
+        Console.WriteLine("Hourly pay rate:");
+        double rate = double.Parse(Console.ReadLine());
+        Console.Write("Hours worked:");
+        double hoursWorked = double.Parse(Console.ReadLine());
+
+        Subcontractor subcontractor = new Subcontractor(name, number, startDate, shift, rate);
+
+        float totalPay = subcontractor.ComputePay(hoursWorked);
+
+            Console.WriteLine("Subcontractor Information:");
+            Console.WriteLine("Name: " + subcontractor.ContractorName);
+            Console.WriteLine("Number: " + subcontractor.ContractorNumber);
+            Console.WriteLine("Start Date: " + subcontractor.ContractorStartDate);
+            Console.WriteLine("Shift: " + subcontractor.Shift);
+            Console.WriteLine("Hourly Pay Rate: " + subcontractor.HourlyPayRate);
+            Console.WriteLine("Total Pay: " + totalPay);
+            Console.Write("Add another subcontractor? (yes or no): ");
+                response = Console.ReadLine(). ToLower();
+                
+}   while ( response == "yes");
+                
+            
+                
+Console.WriteLine("Program ended.");
+            }
+        }
